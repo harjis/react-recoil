@@ -1,12 +1,12 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
 
-import { CharacterCounter } from "./components/CharacterCounter";
+import { TodoList } from "./features/Todos";
 
 function App() {
   return (
     <RecoilRoot>
-      <CharacterCounter />
+      <TodoList />
     </RecoilRoot>
   );
 }
