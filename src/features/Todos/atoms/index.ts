@@ -1,10 +1,11 @@
 import { atom } from "recoil";
 
 import { Todo } from "../types";
+import { getTodos } from "../../../api/todos";
 
 export const todoListState = atom<Todo[]>({
   key: "todoListState",
-  default: [],
+  default: getTodos(),
 });
 
 export const todoListFilterState = atom({

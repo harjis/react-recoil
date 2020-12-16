@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { RecoilRoot } from "recoil";
 
 import { TodoList } from "./features/Todos";
+import { Loading } from "./components/Loading";
 
 function App() {
   return (
     <RecoilRoot>
-      <TodoList />
+      <Suspense fallback={<Loading />}>
+        <TodoList />
+      </Suspense>
     </RecoilRoot>
   );
 }
