@@ -1,23 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
-import { useSetRecoilState } from "recoil";
 
-import { todoListState } from "../../atoms";
-
-export const TodoItemCreator = () => {
+type Props = {
+  addTodo: (text: string) => void;
+};
+export const TodoItemCreator: React.FC<Props> = (props) => {
   const [inputValue, setInputValue] = useState("");
-  const setTodoList = useSetRecoilState(todoListState);
-
-  const addItem = () => {
-    setTodoList((oldTodoList) => [
-      ...oldTodoList,
-      {
-        id: getId(),
-        text: inputValue,
-        isComplete: false,
-      },
-    ]);
-    setInputValue("");
-  };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
@@ -27,12 +14,14 @@ export const TodoItemCreator = () => {
   return (
     <div>
       <input type="text" value={inputValue} onChange={onChange} />
-      <button onClick={addItem}>Add</button>
+      <button
+        onClick={() => {
+          props.addTodo(inputValue);
+          setInputValue("");
+        }}
+      >
+        Add
+      </button>
     </div>
   );
 };
-
-let id = 0;
-function getId() {
-  return id++;
-}

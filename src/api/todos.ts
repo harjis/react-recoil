@@ -1,12 +1,16 @@
 import { Todo } from "../features/Todos/types";
 
-const todos: Todo[] = [
-  { id: 1, text: "Todo 1", isComplete: false },
-  { id: 2, text: "Todo 2", isComplete: false },
-  { id: 3, text: "Todo 3", isComplete: false },
-  { id: 4, text: "Todo 4", isComplete: false },
-  { id: 5, text: "Todo 5", isComplete: false },
-];
+let id = 1;
+export function getId() {
+  return id++;
+}
+
+const todos = [getId(), getId(), getId(), getId(), getId()].reduce<Todo[]>(
+  (acc, cur) => {
+    return acc.concat({ id: cur, text: `Todo ${cur}`, isComplete: false });
+  },
+  []
+);
 
 export const getTodos = (): Promise<Todo[]> =>
   new Promise<Todo[]>((resolve) => {

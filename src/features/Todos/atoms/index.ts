@@ -1,11 +1,15 @@
-import { atom } from "recoil";
+import { atom, atomFamily } from "recoil";
 
 import { Todo } from "../types";
-import { getTodos } from "../../../api/todos";
 
-export const todoListState = atom<Todo[]>({
-  key: "todoListState",
-  default: getTodos(),
+export const todoIdsState = atom<number[]>({
+  key: "todoIdsState",
+  default: [],
+});
+
+export const todoState = atomFamily<Todo, number>({
+  key: "todoState",
+  default: {} as Todo, // disable typechecks lol
 });
 
 export const todoListFilterState = atom({

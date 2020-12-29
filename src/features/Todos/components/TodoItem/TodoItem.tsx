@@ -1,54 +1,29 @@
-import React, { ChangeEvent } from "react";
-import { useRecoilState } from "recoil";
+import React from "react";
 
-import { todoListState } from "../../atoms";
-import { Todo } from "../../types";
-import {
-  removeItemAtIndex,
-  replaceItemAtIndex,
-} from "../../../../utils/arrayUtils";
+import { useTodo } from "../../hooks/useTodo";
 
 type Props = {
-  item: Todo;
+  todoId: number;
+  removeTodo: (todoId: number) => void;
 };
-export const TodoItem: React.FC<Props> = ({ item }) => {
-  const [todoList, setTodoList] = useRecoilState(todoListState);
-  const index = todoList.findIndex((listItem) => listItem === item);
-
-  const editItemText = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value;
-    const newList = replaceItemAtIndex(todoList, index, {
-      ...item,
-      text: value,
-    });
-
-    setTodoList(newList);
-  };
-
-  const toggleItemCompletion = () => {
-    const newList = replaceItemAtIndex(todoList, index, {
-      ...item,
-      isComplete: !item.isComplete,
-    });
-
-    setTodoList(newList);
-  };
-
-  const deleteItem = () => {
-    const newList = removeItemAtIndex(todoList, index);
-
-    setTodoList(newList);
-  };
+export const TodoItem: React.FC<Props> = ({ todoId, removeTodo }) => {
+  const { todo, editItemText, toggleItemCompletion } = useTodo(todoId);
 
   return (
     <div>
-      <input type="text" value={item.text} onChange={editItemText} />
+      <input type="text" value={todo.text} onChange={editItemText} />
       <input
         type="checkbox"
-        checked={item.isComplete}
+        checked={todo.isComplete}
         onChange={toggleItemCompletion}
       />
-      <button onClick={deleteItem}>X</button>
+      <button
+        onClick={() => {
+          removeTodo(todo.id);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };

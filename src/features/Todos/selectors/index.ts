@@ -1,20 +1,20 @@
 import { selector } from "recoil";
 
-import { todoListFilterState, todoListState } from "../atoms";
+import { todoIdsState, todoListFilterState, todoState } from "../atoms";
 
-export const filteredTodoListState = selector({
+export const filteredTodoIdsState = selector({
   key: "filteredTodoListState",
   get: ({ get }) => {
     const filter = get(todoListFilterState);
-    const list = get(todoListState);
+    const todoIds = get(todoIdsState);
 
     switch (filter) {
       case "Show Completed":
-        return list.filter((item) => item.isComplete);
+        return todoIds.filter((todoId) => get(todoState(todoId)).isComplete);
       case "Show Uncompleted":
-        return list.filter((item) => !item.isComplete);
+        return todoIds.filter((todoId) => !get(todoState(todoId)).isComplete);
       default:
-        return list;
+        return todoIds;
     }
   },
 });
@@ -22,9 +22,11 @@ export const filteredTodoListState = selector({
 export const todoListStatsState = selector({
   key: "todoListStatsState",
   get: ({ get }) => {
-    const todoList = get(todoListState);
-    const totalNum = todoList.length;
-    const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
+    const todoIds = get(todoIdsState);
+    const totalNum = todoIds.length;
+    const totalCompletedNum = todoIds.filter(
+      (todoId) => get(todoState(todoId)).isComplete
+    ).length;
     const totalUncompletedNum = totalNum - totalCompletedNum;
     const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum;
 
