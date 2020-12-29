@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-recoil/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/react-recoil/static/js/main.17ecd399.chunk.js",
+    "main.js.map": "/react-recoil/static/js/main.17ecd399.chunk.js.map",
+    "runtime-main.js": "/react-recoil/static/js/runtime-main.23f9a7a6.js",
+    "runtime-main.js.map": "/react-recoil/static/js/runtime-main.23f9a7a6.js.map",
+    "static/js/2.fb597d89.chunk.js": "/react-recoil/static/js/2.fb597d89.chunk.js",
+    "static/js/2.fb597d89.chunk.js.map": "/react-recoil/static/js/2.fb597d89.chunk.js.map",
+    "static/js/3.14178af3.chunk.js": "/react-recoil/static/js/3.14178af3.chunk.js",
+    "static/js/3.14178af3.chunk.js.map": "/react-recoil/static/js/3.14178af3.chunk.js.map",
+    "index.html": "/react-recoil/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/react-recoil/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.fb597d89.chunk.js.LICENSE.txt": "/react-recoil/static/js/2.fb597d89.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.23f9a7a6.js",
+    "static/js/2.fb597d89.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.17ecd399.chunk.js"
+  ]
+}
